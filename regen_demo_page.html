@@ -5,23 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parsons Problem Interface</title>
     <link rel="stylesheet" href="libs/js-parsons-master/parsons.css">
-    <style>
-        /* CSS for the square display area */
-        #calculated-value {
-            width: 150px;           /* Width of the square */
-            height: 150px;          /* Height of the square */
-            display: flex;          /* Flexbox to center the content */
-            justify-content: center;/* Horizontally center the content */
-            align-items: center;    /* Vertically center the content */
-            border: 2px solid #333; /* Border around the square */
-            margin: 20px auto;      /* Center the square horizontally on the page */
-            font-size: 20px;        /* Font size for the displayed value */
-            background-color: #f0f0f0; /* Light gray background color */
-            border-radius: 8px;     /* Optional: Rounded corners */
-        }
-    </style>
-
-
 </head>
 <body>
     <div data-include="menu.html"></div>
@@ -31,15 +14,16 @@
     </header>
     <main>
         <div id="sortableTrash" class="sortable-code"></div>
-        <div id="sortable" class="sortable-code"></div>
-        <div id="calculated-value">Result Output<span id="feedback"></span></div>
+        <div id="sortable" class="sortable-code">
+        </div>
 
-
-
+        <a href="analytics.html">
+            <button>analytics</button>
+        </a>
 
         <button id="submit-btn">Submit</button>
         <button id="reset-btn">Reset</button>
-        <a href="regen_demo_page.html"> 
+        <a href="problem.html"> 
             <button id="regenerate">Regenerate</button>
         </a>
     </main>
@@ -52,7 +36,7 @@
     <script src="libs/js-parsons-master/lib/lis.js"></script>
     <script src="libs/js-parsons-master/parsons.js"></script>
     <script src="libs/js-parsons-master/parsons.js"></script>
-    <script src="script.js"></script>
+    <script src="regen_demo_page.js"></script>
     <script src="load_menu.js"></script>
 </body>
 </html>
