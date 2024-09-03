@@ -1,43 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<link rel="stylesheet" href="ana.css">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Analytics</title>
-    <link rel="stylesheet" href="libs/js-parsons-master/parsons.css">
+    <title>Statistical Result of Questions</title>
+    <!-- 引入外部 CSS 文件 -->
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <header>
-        <h1>User Analytics</h1>
-    </header>
 
-    <main>
+    <div class="header">
+        <h1>Statistical Result of Questions</h1>
+    </div>
 
-        <table id="user-data-table">
-            <thead>
-                <tr>
-                    <th>User ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Score</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Data rows will be inserted here -->
-                <tr>
-                    <td>1</td>
-                    <td>John</td>
-                    <td>john@example.com</td>
-                    <td>85</td>
-                </tr>
-            </tbody>
-        </table>
-    </main>
-    
+    <div class="stats">
+        <div class="stat-box total">
+            <h2>Number of Questions</h2>
+            <p>100</p>
+        </div>
+        <div class="stat-box correct">
+            <h2>Number of Correctly Answered Questions</h2>
+            <p>80</p>
+        </div>
+        <div class="stat-box incorrect">
+            <h2>Number of Incorrectly Answered Questions</h2>
+            <p>20</p>
+        </div>
+    </div>
+
+    <button>Refresh</button>
 
 </body>
-
-
 </html>
