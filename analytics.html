@@ -1,35 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="ana.css">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statistical Result of Questions</title>
-    <!-- 引入外部 CSS 文件 -->
-    <link rel="stylesheet" href="styles.css">
+    <title>Student Performance Tracker</title>
+    <link rel="stylesheet" href="ana.css">
 </head>
 <body>
+    <h1>Student Performance Tracker</h1>
 
-    <div class="header">
-        <h1>Statistical Result of Questions</h1>
+    <div class="container">
+        <h2>Current Data</h2>
+
+        <div class="data-field">
+            <strong>IP Address:</strong> <span id="ip">Waiting for IP data...</span>
+        </div>
+
+        <div class="data-field">
+            <strong>Problem Generated:</strong> <span id="problem">Waiting for problem data...</span>
+        </div>
+
+        <div class="data-field">
+            <strong>Time Taken (seconds):</strong> <span id="time">Waiting for time data...</span>
+        </div>
+
+        <div class="data-field">
+            <strong>Correctness (true/false):</strong> <span id="correctness">Waiting for correctness data...</span>
+        </div>
+
+        <div class="data-field">
+            <strong>Total Problems Attempted:</strong> <span id="total">Waiting for total problems...</span>
+        </div>
+
+        <div class="data-field">
+            <strong>Correct Answers:</strong> <span id="correct">Waiting for correct answers data...</span>
+        </div>
     </div>
 
-    <div class="stats">
-        <div class="stat-box total">
-            <h2>Number of Questions</h2>
-            <p>100</p>
-        </div>
-        <div class="stat-box correct">
-            <h2>Number of Correctly Answered Questions</h2>
-            <p>80</p>
-        </div>
-        <div class="stat-box incorrect">
-            <h2>Number of Incorrectly Answered Questions</h2>
-            <p>20</p>
-        </div>
-    </div>
-
-    <button>Refresh</button>
-
+    <!-- Link to external JavaScript file -->
+    <script src="script.js"></script>
 </body>
 </html>
