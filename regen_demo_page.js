@@ -1,6 +1,4 @@
-var initial = "print 'Hello'\n" +
-                      "print 'Parsons\n" +
-                      "print 'problems!";
+var initial = "This is the regenerated page'\n" 
 
 function displayErrors(fb) {
     if(fb.errors.length > 0) {
@@ -19,23 +17,15 @@ document.addEventListener('DOMContentLoaded', () => {   //make sure script is lo
     });
     parson.init(initial);
     parson.shuffleLines();
- 
+
     document.getElementById('submit-btn').addEventListener('click', () => {
         var result = parson.getFeedback();
-        //alert(result.feedback); // Display feedback to the user
-        console.log("222")
-        if (result == []){
-            console.log("333");
-            result = "congratulation, correct";
-        }
-        document.getElementById('feedback').textContent = result;
-        console.log("111");
-        console.log( result);
+        alert(result.feedback); // Display feedback to the user
     });
 
     document.getElementById('reset-btn').addEventListener('click', () => {
         parson.shuffleLines(); // Reshuffle the blocks for a new attempt
     });
- 
+
 
 });
