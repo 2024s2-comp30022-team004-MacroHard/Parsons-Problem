@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crawler Data</title>
+    <link rel="stylesheet" href="ana_styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><button onclick="navigateTo('ana_overall.html')">Overall</button></li>
+            <li><button onclick="navigateTo('ana_regression.html')">Regression</button></li>
+            <li><button onclick="navigateTo('ana_crawler.html')">Crawler</button></li>
+        </ul>
+    </nav>
+
+    <main id="data-display">
+        <section id="topic-data">
+            <h2>Crawler Data</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Topic</th>
+                        <th>Total Practice</th>
+                        <th>Accuracy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Web Scraping</td>
+                        <td>60</td>
+                        <td>85%</td>
+                    </tr>
+                    <tr>
+                        <td>API Crawling</td>
+                        <td>40</td>
+                        <td>90%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="ana_script.js"></script>
+</body>
+</html>

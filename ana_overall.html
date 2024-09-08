@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Statistics</title>
+    <link rel="stylesheet" href="ana_styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><button onclick="navigateTo('ana_overall.html')">Overall</button></li>
+            <li><button onclick="navigateTo('ana_regression.html')">Regression</button></li>
+            <li><button onclick="navigateTo('ana_crawler.html')">Crawler</button></li>
+        </ul>
+    </nav>
+
+    <main id="data-display">
+        <!-- Overall Data and Current Data Section -->
+        <section id="current-data">
+            <h2>Current Data</h2>
+            <ul>
+                <li>IP Address: <span id="ip-address">Waiting for IP data...</span></li>
+                <li>Problem Generated: <span id="problem-generated">Waiting for problem data...</span></li>
+                <li>Time Taken (seconds): <span id="time-taken">Waiting for time data...</span></li>
+                <li>Correctness (true/false): <span id="correctness">Waiting for correctness data...</span></li>
+                <li>Total Problems Attempted: <span id="total-problems">Waiting for total problems data...</span></li>
+                <li>Correct Answers: <span id="correct-answers">Waiting for correct answers data...</span></li>
+            </ul>
+        </section>
+
+        <!-- Sample Topic-Specific Data Section -->
+        <section id="topic-data">
+            <h2>Overall Data</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Topic</th>
+                        <th>Total Practice</th>
+                        <th>Accuracy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Linear Regression</td>
+                        <td>90</td>
+                        <td>77%</td>
+                    </tr>
+                    <tr>
+                        <td>Crawler</td>
+                        <td>100</td>
+                        <td>80%</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="ana_script.js"></script>
+</body>
+</html>
