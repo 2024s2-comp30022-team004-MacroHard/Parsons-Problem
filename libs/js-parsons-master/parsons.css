@@ -25,7 +25,7 @@
   box-sizing: content-box;
 }
 ul.output {
-    background-color: #FFA;
+    background-color: rgb(233, 233, 185);
 }
 .sortable-code li {
     -moz-border-radius:10px;
@@ -41,6 +41,8 @@ ul.output {
 }
 .sortable-code li:hover {
     overflow: visible;
+    transform: translateY(-3px); /* 悬浮效果 */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* 阴影变大 */
 }
 
 ul.incorrect {
@@ -85,7 +87,7 @@ li.correctPosition, .testcase.pass {
     display: block; 
     white-space: pre; 
     background-color: #555555;
-    color: white;
+    color: rgba(255, 255, 255, 0.651);
     font-size: 12px;
     line-height: 15px;
     margin: 5px;
