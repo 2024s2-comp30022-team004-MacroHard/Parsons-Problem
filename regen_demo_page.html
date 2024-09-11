@@ -5,158 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parsons Problem Interface</title>
     <link rel="stylesheet" href="libs/js-parsons-master/parsons.css">
-    <style>
-        body{
-            height: 100vh;
-            background: linear-gradient(to top right, #e7fcc8, #ffffff);    /* Light gray background color */
-            display: flex;
-            flex-direction: column;
-        }
-
-        main {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-            height: 100%;
-        }
-
-        /* 右边的结果和按钮区域 */
-        #right-panel {
-            width: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: #f9fcfd00;
-            /* border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
-        }
-
-        /* CSS for the square display area */
-        #calculated-value {
-            width: 80%;     /* 宽度 */
-            padding: 20px;
-            margin-bottom: 20px;    /* Center the square horizontally on the page */
-            background-color: #efefef;
-            border-radius: 8px;     /* Optional: Rounded corners */
-            text-align: center;     /*圆角设置*/
-            border: 2px solid #dcdcdc;      /* Border around the square */
-        }
-        
-        /* 分割线 */
-        #divider {
-            width: 10px;
-            background-color: #ccc;
-            cursor: ew-resize;  /* 调整鼠标指针形状 */
-            position: absolute;
-            text-align: center;
-            top: 0;
-            bottom: 0;
-            left: 47.5%;
-            z-index: 1;
-            display: flex;                
-            justify-content: center;       /* 水平居中 */
-            align-items: center;           /* 垂直居中 */
-            color: #606060;
-        }
-
-        #divider:hover{
-            transform: translateY(-3px);     /* 悬浮效果 */
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);   /* 阴影变大 */
-        }
-
-        /* 左边的拖动区域 */
-        #sortableTrash {
-            width: 45%;
-            background: #f0f8f7;
-            border: 1px solid #dcdcdc;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(131, 40, 40, 0.1);
-        }
-
-        button {
-            width: 150px;
-            background: linear-gradient(to right, #28a745, #218838);  /* 渐变绿色按钮 */
-            border: none;
-            color: white;
-            padding: 10px;
-            font-size: 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 5px;
-        }
-
-        /* 鼠标悬停时的效果 */
-        button:hover {
-            transform: translateY(-3px);     /* 悬浮效果 */
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);   /* 阴影变大 */
-        }
-
-        #button-group {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-        }
-
-        @media (max-width: 768px) {
-            main {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            #sortableTrash, #right-panel {
-                width: 100%;
-            }
-
-            #button-group {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            button {
-                width: 95%;
-            }
-        }
-    </style>
-</head>
-
 </head>
 <body>
     <div data-include="menu.html"></div>
-    <!-- <header>
+    <header>
         <h1>Parsons Problem Challenge</h1>
         <p>Arrange the code blocks in the correct order to solve the problem.</p>
-    </header> -->
+    </header>
     <main>
-        <!-- 左侧面板，问题和拖动代码块的区域 -->
-        <div id="left-panel">
-            <h1>Parsons Problem Challenge</h1> <!-- 问题数：Question1之类的但是不打算做在这个地方，先放着吧 -->
-            <p>Arrange the code blocks in the correct order to solve the problem.</p> <!-- 问题描述 -->
-            <div id="sortableTrash" class="sortable-code"> </div>
-         </div>
-
-          <!-- 可拖动的中分线 -->
-        <div id="divider">⫴</div>
-
-        <!-- 右侧面板，用户构建解决方案的区域 -->
-        <div id="right-panel">
-            <div id="sortable" class="sortable-code"></div>
-            <div id="calculated-value">Result Output<span id="feedback"></span></div>
-            <div id="button-group">
-                <button id="run-btn">Run</button>
-                <button id="reset-btn">Reset</button>
-                <button id="submit-btn">Submit</button>
-                <!-- 这里后面merge时要改 -->
-                <a href="analytics.html">
-                    <button id="analytics">analytics</button>
-                </a>
-                <a href="problem.html"> 
-                    <button id="regenerate">Regenerate</button>
-                </a>
-            </div>
+        <div id="sortableTrash" class="sortable-code"></div>
+        <div id="sortable" class="sortable-code">
         </div>
-        
+
+        <a href="ana_overall.html">
+            <button>analytics</button>
+        </a>
+
+        <button id="submit-btn">Submit</button>
+        <button id="reset-btn">Reset</button>
+        <a href="problem.html"> 
+            <button id="regenerate">Regenerate</button>
+        </a>
     </main>
 
     
