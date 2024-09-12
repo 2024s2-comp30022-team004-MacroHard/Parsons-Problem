@@ -7,9 +7,10 @@
                 <div class="web-name">Learnr</div>
             </div>
             <div class="nav-links">
-                <router-link to="/history" class="nav-link">History</router-link>
-                <router-link to="/AdminLogin" class="nav-link">Logout</router-link>
                 <router-link to="/Generator" class="nav-link">Home</router-link>
+                <router-link to="/history" class="nav-link">History</router-link>
+                <a href="#" class="nav-link" @click.prevent="handleLogout">Logout</a>
+                
             </div>
         </nav>
         <div id="cont_box">
@@ -64,6 +65,9 @@
 </template>
 
 <script>
+import { useRouter } from 'vue-router';
+const router = useRouter() 
+
 export default {
     data() {
         return {
@@ -78,6 +82,27 @@ export default {
                 { title: "Correlation", practice: 60, accuracy: 90 }
             ]
         };
+    },
+    methods: {
+        handleLogout() {
+            console.log("loging out...");
+            this.setCookie("Admin", false, 0)
+            console.log("Admin cookie terminated")
+            router.push('/Generator');
+        },
+
+        setCookie(name, value, time) {
+            let expires = "";
+            if (time) {
+                let date = new Date();
+                date.setTime(date.getTime() + (time * 1000)); // in seconds
+                expires = "; expires=" + date.toUTCString();
+            }
+            let cookie = name + "=" + (value || "") + expires + "; path=/";
+            console.log("Cookie updatesuccess: " + cookie);
+            document.cookie = cookie
+        }
+
     }
 };
 </script>
