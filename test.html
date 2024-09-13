@@ -3,303 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Parsons Problem Interface</title>
     <style>
-        body {
-            height: 100vh;
-            background: linear-gradient(to top right, #e7fcc8, #ffffff);  /* 淡雅背景 */
-            display: flex;
-            flex-direction: column;
-            font-family: Arial, sans-serif;
+        /* 整体的大小 */
+        html, body {
+            height: 100%;
             margin: 0;
             padding: 0;
         }
-
-        header {
-            text-align: center;
-            padding: 20px;
-        }
-
-        header h1 {
-            font-size: 24px;
-            color: #333;
+        body{
+            height: 100vh;
+            background: linear-gradient(to top right, #e7fcc8, #ffffff);
+            display: flex;
+            flex-direction: column;
         }
 
         main {
             display: flex;
-            justify-content: space-between;
-            padding: 20px;
             height: 100%;
         }
 
-        /* 左边的拖动区域 */
-        #sortableTrash {
-            width: 45%;
-            background: #f0f8f7;
-            border: 1px solid #dcdcdc;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(131, 40, 40, 0.1);
-        }
-
-        /* .sortable-code {
-            padding: 10px;
-            background-color: #fff;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            border: 1px solid #ccc;
-        } */
-
-        /* 分割线 */
-        #divider {
-            width: 10px;
-            background-color: #ccc;
-            cursor: ew-resize;  /* 调整鼠标指针形状 */
-            position: sticky;
-            text-align: center;
-            top: 0;
-            bottom: 0;
-            left: 47.5%;
-            z-index: 1;
-            display: flex;                
-            justify-content: center;       /* 水平居中 */
-            align-items: center;           /* 垂直居中 */
-            color: #606060;
-        }
-        #divider:hover {
-            transform: translateX(-50%) translateY(-3px);  /* 悬浮时的效果保持 */
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);   /* 阴影变大 */
-        }
-
-        /* 右边的结果和按钮区域 */
-        #right-panel {
-            width: 49.5%;
+        /* 左侧面板样式 */
+        #left-panel {
+            width: 48%;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            background: #f9fcfd;
-            border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            background: #f9f7ea;
         }
 
-        /* #sortable {
-            width: 100%;
-            min-height: 150px;
-            background: #eef7f1;
-            border: 2px dashed #ccc;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-        } */
+        h2 {
+            margin: 0 0 20px;
+        }
 
-        #calculated-value {
-            width: 100%;
+        /* 右侧面板样式 */
+        #right-panel {
+            width: 48%;
+            display: flex;
+            flex-direction: column;
+            background: #f9f7ea;
             padding: 20px;
-            margin-bottom: 20px;
-            background-color: #eef7f1;
-            border-radius: 8px;
+        }
+
+        #right-top {
+            flex: 1;
+            background-color: #c4d6be;
+            padding: 20px;
+            overflow-y: auto;
             text-align: center;
-            border: 2px solid #dcdcdc;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* 分割线样式 */
+        #divider {
+            width: 4%;
+            background-color: #ccc;
+            cursor: ew-resize;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #divider:hover {
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 右侧底部按钮和结果区域 */
+        #button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
         }
 
         button {
-            width: 100px;
-            background: linear-gradient(to right, #28a745, #218838);  /* 渐变绿色按钮 */
-            border: none;
+            padding: 10px 20px;
+            background-color: #28a745;
             color: white;
-            padding: 10px;
-            font-size: 14px;
-            border-radius: 5px;
+            border: none;
             cursor: pointer;
-            margin: 5px;
+            border-radius: 5px;
         }
 
         button:hover {
-            background: #218838;
+            background-color: #218838;
         }
 
-        #button-group {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-        }
-
-        #run-btn, #reset-btn, #submit-btn {
-            width: 100px;
-        }
-
-
-        /* 进度条容器 */
-        #progress-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin: 10px auto;  /* 居中 */
-            padding: 10px;
-            background-color: #dfe6e9;
+        /* 固定的再生按钮 */
+        #regenerate-btn {
+            position: fixed;
+            left: 10px;
+            bottom: 10px;
+            background-color: #d7b50d;
+            padding: 10px 20px;
+            color: white;
+            border: none;
             border-radius: 5px;
-            width: calc(100% - 30px);  /* 左右的间距 */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            text-align: left;
+            cursor: pointer;
         }
 
-        
+        #regenerate-btn:hover {
+            background-color: #e9a004;
+        }
 
-        #progress-bar {
+        /* 结果区域 */
+        #calculated-value {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #efefef;
+            text-align: center;
+            border-radius: 8px;
+            border: 2px solid #dcdcdc;
+        }
+
+        /* 可拖动的水平分割线 */
+        #horizontal-divider {
             width: 100%;
             height: 10px;
-            background-color: #f0f0f0;
-            border-radius: 5px;
-            position: relative;
-            overflow: hidden;
+            background-color: #ccc;
+            cursor: ns-resize;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #606060;
         }
 
-        #progress {
-            height: 100%;
-            background-color: #f39c12; /* 设置进度条颜色 */
-            width: 0%; /* 初始宽度 */
+        #horizontal-divider:hover {
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
         }
 
-        #time-elapsed {
-            width: 100%; /* 使它填满容器 */
-            text-align: left; /* 左对齐文字 */
-            font-size: 14px;
-            color: #333;
-        }
-
-        @media (max-width: 768px) {
-            main {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            #sortableTrash, #right-panel {
-                width: 100%;
-            }
-
-            #button-group {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            button {
-                width: 80%;
-            }
+        /* 底部区域样式 */
+        #right-bottom {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f9f7eace;
         }
     </style>
 </head>
-
 <body>
-    <!-- 进度条 -->
-    <div id="progress-container">
-        <div id="progress-bar">
-            <div id="progress"></div>
-        </div>
-        <div id="time-elapsed">0 Seconds</div>
-    </div>
-
     <main>
-        <!-- 左侧面板，问题和拖动代码块的区域 -->
-         <div id="left-panel">
-            <h1>Parsons Problem Challenge</h1> <!-- 问题数：Question1之类的但是不打算做在这个地方，先放着吧 -->
-            <p>Arrange the code blocks in the correct order to solve the problem.</p> <!-- 问题描述 -->
-            <div id="sortableTrash" class="sortable-code"> </div>
-         </div>
-        
-         
-        <!-- 可拖动的中分线 -->
+        <!-- 左侧面板 -->
+        <div id="left-panel">
+            <h2>Parsons Problem Challenge</h2>
+            <p>Arrange the code blocks in the correct order to solve the problem.</p>
+            <div id="sortableTrash">
+                <div>print('Parsons')</div>
+                <div>print('Hello')</div>
+                <div>print('problems!')</div>
+            </div>
+            <button id="regenerate-btn">Regenerate</button>
+        </div>
+
+        <!-- 分割线 -->
         <div id="divider">⫴</div>
-        
-        <!-- 右侧面板，用户构建解决方案的区域 -->
+
+        <!-- 右侧面板 -->
         <div id="right-panel">
-            <div id="sortable" class="sortable-code"></div>
-            <div id="calculated-value">Result Output<span id="feedback"></span></div>
-            <div id="button-group">
-                <button id="run-btn">Run</button>
-                <button id="reset-btn">Reset</button>
-                <button id="submit-btn">Submit</button>
-                <a href="regen_demo_page.html"> 
-                    <button id="regenerate">Regenerate</button>
-                </a>
+            <div id="right-top">
+                <div id="sortable" class="sortable-code"></div>
+
+                <div id="button-group">
+                    <!-- 按钮：Run -->
+                    <button id="run-btn">
+                        <i class="fas fa-play"></i> Run
+                    </button>
+
+                    <!-- 按钮：Reset -->
+                    <button id="reset-btn">
+                        <i class="fas fa-undo"></i> Reset
+                    </button>
+
+                    <!-- 按钮：Save -->
+                    <button id="save-btn">
+                        <i class="fas fa-save"></i> Save
+                    </button>
+
+                    <!-- 按钮：Submit -->
+                    <button id="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Submit
+                    </button>
+                </div>
+            </div>
+
+            <div id="horizontal-divider">=</div>
+
+            <div id="right-bottom">
+                <div id="calculated-value">Result Output</div>
             </div>
         </div>
     </main>
 
-    <script src="libs/js-parsons-master/lib/jquery.min.js"></script>
-    <script src="libs/js-parsons-master/lib/jquery-ui.min.js"></script>
-    <script src="libs/js-parsons-master/lib/jquery.ui.touch-punch.min.js"></script>
-    <script src="libs/js-parsons-master/lib/underscore-min.js"></script>
-    <script src="libs/js-parsons-master/lib/lis.js"></script>
-    <script src="libs/js-parsons-master/parsons.js"></script>
-    <script src="script.js"></script>
-    <script src="load_menu.js"></script>
-
     <script>
-        // 拖动逻辑
+        // 分割线拖动逻辑
         const divider = document.getElementById('divider');
         const leftPanel = document.getElementById('left-panel');
         const rightPanel = document.getElementById('right-panel');
-
         let isDragging = false;
 
-        divider.addEventListener('mousedown', function(e) {
+        divider.addEventListener('mousedown', function () {
             isDragging = true;
         });
 
-        document.addEventListener('mousemove', function(e) {
+        document.addEventListener('mousemove', function (e) {
             if (isDragging) {
                 let offsetX = e.clientX;
-
-                // 计算新的宽度比例
-                let leftWidth = offsetX / window.innerWidth * 100;
+                let leftWidth = (offsetX / window.innerWidth) * 100;
                 let rightWidth = 100 - leftWidth;
 
                 // 限制最小和最大宽度
-                if (leftWidth < 10) leftWidth = 10;
-                if (rightWidth < 10) rightWidth = 10;
-
-                leftPanel.style.width = leftWidth + '%';
-                rightPanel.style.width = rightWidth + '%';
-                divider.style.left = leftWidth + '%';
+                if (leftWidth > 10 && rightWidth > 10) {
+                    leftPanel.style.width = leftWidth + '%';
+                    rightPanel.style.width = rightWidth - 4 + '%'; // 4% is the divider width
+                }
             }
         });
 
-        document.addEventListener('mouseup', function() {
+        document.addEventListener('mouseup', function () {
             isDragging = false;
         });
-    </script>
-    
-    <!-- 进度条 -->
-    <!--<script>
-        // 更新进度条
-        function updateProgressBar(progress) {
-            const progressBar = document.getElementById('progress');
-            progressBar.style.width = progress + '%'; // 设置进度
-        }
 
-        // 模拟进度更新
-        let progress = 0;
-        const interval = setInterval(() => {
-            if (progress < 100) {
-                progress += 1; 
-                updateProgressBar(progress);
-            } else {
-                clearInterval(interval); // 停止递增
+        // 水平分割线拖动逻辑
+        const horizontalDivider = document.getElementById('horizontal-divider');
+        const rightTop = document.getElementById('right-top');
+        const rightBottom = document.getElementById('right-bottom');
+        let isDraggingHorizontally = false;
+
+        horizontalDivider.addEventListener('mousedown', function (e) {
+            isDraggingHorizontally = true;
+        });
+
+        document.addEventListener('mousemove', function (e) {
+            if (isDraggingHorizontally) {
+                const panelHeight = rightPanel.offsetHeight;
+                const offsetY = e.clientY - rightPanel.offsetTop;
+
+                // 更新上下分区的高度
+                rightTop.style.height = offsetY + 'px';
+                rightBottom.style.height = (panelHeight - offsetY - horizontalDivider.offsetHeight) + 'px';
             }
-        }, 1000); // 每秒递增
+        });
 
-        // 计算页面上的已用时间
-        let secondsElapsed = 0;
-        const timeDisplay = document.getElementById('time-elapsed');
-
-        setInterval(() => {
-            secondsElapsed++;
-            timeDisplay.textContent = secondsElapsed + ' Seconds';
-        }, 1000); // 每秒更新时间
-
-    </script> -->
+        document.addEventListener('mouseup', function () {
+            isDraggingHorizontally = false;
+        });
+    </script>
 </body>
 </html>

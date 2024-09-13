@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {   //make sure script is lo
             console.log("333");
             result = "congratulation, correct";
         }
-        document.getElementById('feedback').textContent = result;
+        document.getElementById('feedback').textContent = "\n" + result;
         console.log("111");
         console.log( result);
     });
